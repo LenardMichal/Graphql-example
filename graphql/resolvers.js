@@ -22,10 +22,13 @@ module.exports = {
   }, 
   updateMessage: async function({id, input}) {
     let respond = await MessageModel.findByIdAndUpdate(id, {author: input.author, content: input.content});
-    return new Message(respond._id, {
-      content: respond.content,
-      author: respond.author
-    }); 
+    return this.getMessage({id : respond._id})
+    
+    // This not work as I wanted
+    // return new Message(respond._id, {
+    //   content: respond.content,
+    //   author: respond.author
+    // }); 
   }
 
 }
